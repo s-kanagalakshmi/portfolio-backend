@@ -4,6 +4,7 @@ const cors = require("cors");
 // const { default: Blog } = require("./Blog"); // Make sure the Blog model is correctly imported
 const Blog = require("./Blog");
 const blogRoutes = require("./Routes");
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(cors({
 app.use(express.json());
 app.use("/api/blogs", blogRoutes);
 
-mongoose.connect("mongodb://127.0.0.1:27017/portfolio")
+mongoose.connect("mongodb+srv://kanagalakshmimca16:6Q2rVZ50EoXokz42@my-portfolio.jgqoiiq.mongodb.net/Portfolio?retryWrites=true&w=majority&appName=My-Portfolio")
   .then(() => {
     console.log("DB connected");
   })
@@ -51,6 +52,4 @@ app.post("/api/blogs", async (req, res) => {
   });
   
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
-});
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
